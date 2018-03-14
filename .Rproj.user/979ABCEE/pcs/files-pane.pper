@@ -1,0 +1,9 @@
+{
+    "path" : "~/RProjects/Titanic",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
