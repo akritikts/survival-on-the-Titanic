@@ -29,4 +29,15 @@ manip <- function(){
   test$Survived[test$Sex == 'female' & test$Pclass == 3 & test$Fare >= 20] <- 0
   sub_pred <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
   write.csv(sub_pred, file = "theyallperish.csv", row.names = FALSE)
+  fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, method = "class")
+  plot(fit)
+  text(fit)
+  rpart.plot(fit)
+  Prediction <- predict(fit, test, type = "class")
+  sub_pred <- data.frame(PassengerId = test$PassengerId, Survived = Prediction)
+  write.csv(sub_pred, file = "myfirstdtree.csv", row.names = FALSE)
+  fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
+               data=train,
+               method="class", 
+               control=rpart.control(minsplit=2, cp=0))
 }
