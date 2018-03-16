@@ -40,4 +40,9 @@ manip <- function(){
                data=train,
                method="class", 
                control=rpart.control(minsplit=2, cp=0))
+  test$Survived <- NA
+  combi <- rbind(train, test)
+  combi$Name <- as.character(combi$Name)
+  combi$Title <- sapply(combi$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][2]})
+  combi$Title <- sub(' ', '', combi$Title)
 }
