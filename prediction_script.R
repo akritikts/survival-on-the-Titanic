@@ -50,4 +50,7 @@ manip <- function(){
   combi$Title[combi$Title %in% c('Dona', 'Lady', 'the Countess', 'Jonkheer')] <- 'Lady'
   combi$Title <- factor(combi$Title)
   combi$FamilySize <- combi$SibSp + combi$Parch + 1
+  combi$FamilyID <- paste(as.character(combi$FamilySize), combi$Surname, sep="")
+  combi$Surname <- sapply(combi$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][1]})
+  
 }
