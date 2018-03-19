@@ -52,5 +52,9 @@ manip <- function(){
   combi$FamilySize <- combi$SibSp + combi$Parch + 1
   combi$FamilyID <- paste(as.character(combi$FamilySize), combi$Surname, sep="")
   combi$Surname <- sapply(combi$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][1]})
-  
+  combi$FamilyID[combi$FamilySize <= 2] <- 'Small'
+  famIds <- data.frame(table(combi$FamilyID))
+  famIds <- famIds[famIds$Freq <= 2,]
+  combi$FamilyID[combi$FamilyID %in% famIds$Var1] <- 'Small'
+  combi$FamilyID <- factor(combi$FamilyID)
 }
