@@ -57,4 +57,6 @@ manip <- function(){
   famIds <- famIds[famIds$Freq <= 2,]
   combi$FamilyID[combi$FamilyID %in% famIds$Var1] <- 'Small'
   combi$FamilyID <- factor(combi$FamilyID)
+  train <- combi[1:891, ]
+  test <- combi[892:1309, ]
 }
