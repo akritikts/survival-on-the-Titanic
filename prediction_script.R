@@ -64,4 +64,9 @@ manip <- function(){
                +              method="class")
   plot(fit)
   rpart.plot(fit)
+  summary(combi$Age)
+  Agefit <- rpart(Age ~ Pclass + Sex + SibSp + Parch + Fare + Embarked + Title + FamilySize,
+                  data=combi[!is.na(combi$Age),], 
+                  method="anova")
+  combi$Age[is.na(combi$Age)] <- predict(Agefit, combi[is.na(combi$Age),])
 }
