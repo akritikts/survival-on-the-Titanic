@@ -75,5 +75,9 @@ manip <- function(){
   summary(combi$Fare)
   which(is.na(combi$Fare))
   combi$Fare[1044] <- median(combi$Fare, na.rm=TRUE)
+  combi$FamilyID2 <- combi$FamilyID
+  combi$FamilyID2 <- as.character(combi$FamilyID2)
+  combi$FamilyID2[combi$FamilySize <= 3] <- 'Small'
+  combi$FamilyID2 <- factor(combi$FamilyID2)
   
 }
