@@ -69,4 +69,11 @@ manip <- function(){
                   data=combi[!is.na(combi$Age),], 
                   method="anova")
   combi$Age[is.na(combi$Age)] <- predict(Agefit, combi[is.na(combi$Age),])
+  which(combi$Embarked == '')
+  combi$Embarked[c(62,830)] = "S"
+  combi$Embarked <- factor(combi$Embarked)
+  summary(combi$Fare)
+  which(is.na(combi$Fare))
+  combi$Fare[1044] <- median(combi$Fare, na.rm=TRUE)
+  
 }
