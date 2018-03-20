@@ -79,5 +79,17 @@ manip <- function(){
   combi$FamilyID2 <- as.character(combi$FamilyID2)
   combi$FamilyID2[combi$FamilySize <= 3] <- 'Small'
   combi$FamilyID2 <- factor(combi$FamilyID2)
+  set.seed(415)
+  fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare +
+                        Embarked + Title + FamilySize + FamilyID2,
+                      data=train, 
+                      importance=TRUE, 
+                      ntree=2000)
+  set.seed(415)
+  fit <- cforest(as.factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare +
+                   Embarked + Title + FamilySize + FamilyID,
+                 data = train, 
+                 controls=cforest_unbiased(ntree=2000, mtry=3))
+  
   
 }
