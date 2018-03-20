@@ -4,4 +4,5 @@ init_lib <- function(){
   library(rpart)
   library('rpart.plot')
   library('RColorBrewer')
+  library(randomForest)
 }
